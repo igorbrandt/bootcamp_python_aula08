@@ -1,5 +1,7 @@
-from etl import extract_data
+from etl import extract_data, calcular_valor_vendas, load_data
 
 pasta = "data"
 
-print(extract_data(pasta))
+df = extract_data(pasta)
+df_transformado = calcular_valor_vendas(df)
+print(load_data(df_transformado, "csv"))

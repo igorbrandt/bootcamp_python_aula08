@@ -1,12 +1,12 @@
 import pandas as pd
-import glob as g
+import glob
 import os
 
 ### função de extract que lê e consolida os 3 arquivos .json
 def extract_data(folder: str) -> pd.DataFrame:
-    
+
     # encontrar paths de cada um dos arquivos .json
-    json_files = g.glob(os.path.join(folder, "*.json"))
+    json_files = glob.glob(os.path.join(folder, "*.json"))
 
     # ler cada um dos arquivos
     df_list = [pd.read_json(file) for file in json_files]
@@ -17,5 +17,18 @@ def extract_data(folder: str) -> pd.DataFrame:
     return total_df
 
 # função que transforma
+def calcular_valor_vendas(df: pd.DataFrame) -> pd.DataFrame:
+    df["Valor_Total"] = df["Quantidade"] * df["Venda"]
+    return df
 
-# função que carrega em csv ou parquet
+# função que carrega em csv ou parquet. função recebe dois parâmetros: o DF e o formato (csv, parquet, ou ambos)
+def load_data(df: pd.DataFrame, output_format: list):
+    if output_format == "csv":
+        df.to_csv("dados.csv")
+    if output_format == "parquet":
+        df.to_parquet("dados.parquet")
+
+
+if __name__ == "__main__":
+    folder = "data"
+    print(extract_data(folder))
