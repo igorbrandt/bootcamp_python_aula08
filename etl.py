@@ -25,9 +25,9 @@ def calcular_valor_vendas(df: pd.DataFrame) -> pd.DataFrame:
 def load_data(df: pd.DataFrame, output_format: list):
     for format in output_format:
         if format == "csv":
-            df.to_csv("dados.csv")
+            df.to_csv("dados.csv", index=False)
         if format == "parquet":
-            df.to_parquet("dados.parquet")
+            df.to_parquet("dados.parquet", index=False)
 
 
 if __name__ == "__main__":
