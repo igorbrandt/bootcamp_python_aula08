@@ -4,4 +4,4 @@ pasta = "data"
 
 df = extract_data(pasta)
 df_transformado = calcular_valor_vendas(df)
-print(load_data(df_transformado, "csv"))
+print(load_data(df_transformado, ["parquet", "csv"]))

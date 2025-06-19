@@ -23,10 +23,11 @@ def calcular_valor_vendas(df: pd.DataFrame) -> pd.DataFrame:
 
 # função que carrega em csv ou parquet. função recebe dois parâmetros: o DF e o formato (csv, parquet, ou ambos)
 def load_data(df: pd.DataFrame, output_format: list):
-    if output_format == "csv":
-        df.to_csv("dados.csv")
-    if output_format == "parquet":
-        df.to_parquet("dados.parquet")
+    for format in output_format:
+        if format == "csv":
+            df.to_csv("dados.csv")
+        if format == "parquet":
+            df.to_parquet("dados.parquet")
 
 
 if __name__ == "__main__":
